@@ -18,7 +18,7 @@
       </div>
     </div>
     <!--Create a list of app buttons  -->
-    <div  class="grid-x grid-padding-x">
+    <div class="grid-x grid-padding-x">
       <div class="large-12 medium-12 cell">
         <div id="apps-block" class="grid-x grid-padding-x">
           <!-- <div class="large-4 medium-4 small-4 cell">
@@ -51,20 +51,26 @@
   <script src="js/app.js"></script>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script>
-    var apps = ['app1', 'app2', 'app3'];
+    var apps = [{ 'id': 'app1', 'name': 'Application 1' },
+    { 'id': 'app2', 'name': 'Application 2' },
+    { 'id': 'app3', 'name': 'Application 3' },
+    ];
 
-   var appsBlock = d3.select("#apps-block");
-   appsBlock.selectAll("div")
-    .data(apps)
-    .enter()
-    .append("div")
-    .classed("large-4 medium-4 small-4 cell", true)
-    .append("p")
-    .append("a")
-    .classed("button", true)
-    .attr("href", "#")
-    .text(function(name) { return name; });
-
+    var appsBlock = d3.select("#apps-block");
+    appsBlock.selectAll("div")
+      .data(apps)
+      .enter()
+      .append("div")
+      .classed("large-4 medium-4 small-4 cell", true)
+      .append("p")
+      .append("a")
+      .classed("button", true)
+      .attr("href", "#")
+      .attr('data-id', function (app) { return app.id; })
+      .text(function (app) { return app.name; })
+      .on("click", function (app) {
+        alert("I am an alert box for app " + app.name);
+      });
   </script>
 </body>
 
