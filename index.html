@@ -18,104 +18,70 @@
         <h1>Apps</h1>
       </div>
     </div>
-    <div class="columns">
-      <div class="column col-3">
-        <button class="btn btn-primary">
-                  App 1
-                </button>
-
-      </div>
-      <div class="column col-3"> <button class="btn btn-primary">
-              App 2
-            </button></div>
-      <div class="column col-3"> <button class="btn btn-primary">
-              App 3
-            </button></div>
-      <div class="column col-3"> <button class="btn btn-primary">
-              App 4
-            </button></div>
+    <div class="columns" id="apps">
     </div>
   </div>
 
   <!-- Libaries -->
-  <div class="columns">
+  <div class="columns" id="libraries">
     <div class="column col-12">
       <h1>Libaries</h1>
     </div>
   </div>
   <div class="columns">
-    <div class="column col-3"> <button class="btn btn-primary">
-                Library 1
-              </button></div>
-    <div class="column col-3"><button class="btn btn-primary">
-                Library 2
-              </button></div>
-    <div class="column col-3"><button class="btn btn-primary">
-                Library 3
-              </button></div>
-    <div class="column col-3"><button class="btn btn-primary">
-                Library 4
-              </button></div>
+  </div>
   </div>
   </div>
 
-
-
-  </div>
-
-<!-- Modal Data -->
+  <!-- Modal Data -->
   <div id="modal" class="modal modal-sm">
-      <div class="modal-overlay"></div>
-      <div class="modal-container">
-        <div class="modal-header">
-          <button class="btn btn-clear float-right close-modal" type="button"></button>
-          <div class="modal-title">Modal title</div>
-        </div>
-        <div class="modal-body">
-          <div class="content">
-            <p>This is some text inside the Modal.</p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary close-modal" type="button">Close</button>
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <button class="btn btn-clear float-right close-modal" type="button"></button>
+        <div class="modal-title">Modal title</div>
+      </div>
+      <div class="modal-body">
+        <div class="content">
+          <p>This is some text inside the Modal.</p>
         </div>
       </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary close-modal" type="button">Close</button>
+      </div>
     </div>
-
+  </div>
 
   <script src="js/vendor/jquery.js"></script>
-  <!-- <script src="https://d3js.org/d3.v4.min.js"></script> -->
-
+  <script src="js/d3.v4.min.js"></script>
   <script>
-    $(document).foundation();
-  </script>
-  <script>
-$(".btn").on("click", function() {
-  $('#modal').addClass('active');
-});
+    $(document).ready(function () {
+      // Modal
+      $(".btn").on("click", function () {
+        $('#modal').addClass('active');
+      });
 
-$(".close-modal").on("click", function() {
-  $('#modal').removeClass('active');
-});
+      $(".close-modal").on("click", function () {
+        $('#modal').removeClass('active');
+      });
+      // End of Modal
 
-    var apps = [{ 'id': 'app1', 'name': 'Application 1' },
-    { 'id': 'app2', 'name': 'Application 2' },
-    { 'id': 'app3', 'name': 'Application 3' },
-    ];
+      var apps = [{ 'id': 'app1', 'name': 'Application 1' },
+      { 'id': 'app2', 'name': 'Application 2' },
+      { 'id': 'app3', 'name': 'Application 3' },
+      ];
 
-    // var appsBlock = d3.select("#apps-block");
-    // appsBlock.selectAll("div")
-    //   .data(apps)
-    //   .enter()
-    //   .append("div")
-    //   .classed("large-4 medium-4 small-4 cell", true)
-    //   .append("p")
-    //   .append("a")
-    //   .classed("button", true)
-    //   .attr("href", "#")
-    //   .attr('data-id', function (app) { return app.id; })
-    //   .attr("data-reveal-id", "myModal")
-    //   .text(function (app) { return app.name; });
+      var appsBlock = d3.select("#apps");
+      appsBlock.selectAll("div")
+        .data(apps)
+        .enter()
+        .append("div")
+        .classed("column col-3", true)
+        .append("button")
+        .classed("btn btn-primary", true)
+        .attr('data-id', function (app) { return app.id; })
+        .text(function (app) { return app.name; });
+    });
   </script>
 </body>
 
