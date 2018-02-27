@@ -19,6 +19,7 @@
       </div>
     </div>
     <div class="columns" id="apps">
+        <button class="btn btn-primary" data-id="app3">Application 4</button>
     </div>
   </div>
 
@@ -39,11 +40,11 @@
     <div class="modal-container">
       <div class="modal-header">
         <button class="btn btn-clear float-right close-modal" type="button"></button>
-        <div class="modal-title">Modal title</div>
+        <div class="modal-title"></div>
       </div>
       <div class="modal-body">
         <div class="content">
-          <p>This is some text inside the Modal.</p>
+          <p id="modal-content"></p>
         </div>
       </div>
       <div class="modal-footer">
@@ -57,11 +58,15 @@
   <script>
     $(document).ready(function () {
       // Modal
-      $(".btn").on("click", function () {
+      $(".btn").on("click", function (event) {
         $('#modal').addClass('active');
+        console.log(event);
+        var btn = event.target;
+        var name = target.text();
+        $('.modal-title').text(name);
       });
 
-      $(".close-modal").on("click", function () {
+      $(".close-modal").on("click", function (event) {
         $('#modal').removeClass('active');
       });
       // End of Modal
@@ -81,6 +86,7 @@
         .classed("btn btn-primary", true)
         .attr('data-id', function (app) { return app.id; })
         .text(function (app) { return app.name; });
+    // Get the  description and libraries from a list
     });
   </script>
 </body>
